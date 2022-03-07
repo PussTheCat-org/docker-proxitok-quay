@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  proxytok:
+    container_name: proxytok
+    image: quay.io/pussthecatorg/proxitok:latest
+    ports:
+      - 8080:80
+    environment:
+      - APP_URL="http://localhost:8080"
+      - LATTE_CACHE=/cache
+      - API_CACHE=redis
+      - REDIS_HOST=proxytok-redis
+      - REDIS_PORT=6379
+      - API_CACHE_JSON=/cache
+    volumes:
+      - proxitok-cache:/cache
+    depends_on:
+      - proxytok-redis
+
+  proxytok-redis:
+    image: redis:6-alpine
+    container_name: proxytok-redis
+    command: redis-server --save 60 1 --loglevel warning
+    restart: unless-stopped
+
+volumes:
+  proxitok-cache:

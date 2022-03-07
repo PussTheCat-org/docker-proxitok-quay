@@ -1,8 +1,7 @@
 FROM php:apache
-ENV --mount=type=secret,id=gh_token GH_TOKEN=$(cat /run/secrets/gh_token) # https://docs.docker.com/engine/reference/builder/#arg
 WORKDIR /var/www/html
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-RUN apt update -y && apt upgrade -y \
+RUN --mount=type=secret,id=gh_token apt update -y && apt upgrade -y \
     && apt install -y --no-install-recommends wget git \
     && apt autoclean -y \
     && apt autoremove -y \
@@ -11,7 +10,7 @@ RUN apt update -y && apt upgrade -y \
     && pecl install redis \
     && docker-php-ext-enable redis \
     && git clone --depth=1 https://github.com/pablouser1/ProxiTok.git . \
-    && composer config -g github-oauth.github.com $GH_TOKEN \
+    && composer config -g github-oauth.github.com $(cat /run/secrets/gh_token) \
     && composer update \
     && composer install
 

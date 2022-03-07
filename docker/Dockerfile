@@ -3,7 +3,7 @@ WORKDIR /var/www/html
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 ARG GH_TOKEN
 RUN apt update -y && apt upgrade -y \
-    && apt install -y --no-install-recommends wget git \
+    && apt install -y --no-install-recommends wget git zip unzip \
     && apt autoclean -y \
     && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/* \

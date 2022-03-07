@@ -1,7 +1,7 @@
 FROM php:apache
 WORKDIR /var/www/html
 RUN apt update -y && apt upgrade -y \
-    && apt install -y --no-install-recommends wget \
+    && apt install -y --no-install-recommends wget git \
     && apt autoclean -y \
     && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/* \

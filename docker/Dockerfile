@@ -1,8 +1,8 @@
 FROM php:apache
-ENV GH_TOKEN=$(cat /run/secrets/gh_token) # https://docs.docker.com/engine/reference/builder/#arg
+ENV --mount=type=secret,id=gh_token GH_TOKEN=$(cat /run/secrets/gh_token) # https://docs.docker.com/engine/reference/builder/#arg
 WORKDIR /var/www/html
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-RUN --mount=type=secret,id=gh_token apt update -y && apt upgrade -y \
+RUN apt update -y && apt upgrade -y \
     && apt install -y --no-install-recommends wget git \
     && apt autoclean -y \
     && apt autoremove -y \

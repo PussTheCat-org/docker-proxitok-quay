@@ -1,8 +1,7 @@
 FROM php:apache
 WORKDIR /var/www/html
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-RUN --mount=type=secret,id=gh_token \ # https://github.com/docker/build-push-action/blob/master/docs/advanced/secrets.md
-  apt update -y && apt upgrade -y \
+RUN --mount=type=secret,id=gh_token apt update -y && apt upgrade -y \
     && apt install -y --no-install-recommends wget git \
     && apt autoclean -y \
     && apt autoremove -y \

@@ -1,7 +1,8 @@
 FROM php:apache
 WORKDIR /var/www/html
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-RUN --mount=type=secret,id=gh_token apt update -y && apt upgrade -y \
+ARG GH_TOKEN
+RUN apt update -y && apt upgrade -y \
     && apt install -y --no-install-recommends wget git \
     && apt autoclean -y \
     && apt autoremove -y \
@@ -10,8 +11,7 @@ RUN --mount=type=secret,id=gh_token apt update -y && apt upgrade -y \
     && pecl install redis \
     && docker-php-ext-enable redis \
     && git clone --depth=1 https://github.com/pablouser1/ProxiTok.git . \
-    && ls /run/secrets/ \
-    && composer config -g github-oauth.github.com $(cat /run/secrets/gh_token) \
+    && composer config -g github-oauth.github.com "$GH_TOKEN" \
     && composer update \
     && composer install
 

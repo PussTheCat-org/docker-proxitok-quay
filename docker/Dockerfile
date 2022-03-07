@@ -16,4 +16,3 @@ RUN apt update -y && apt upgrade -y \
     && composer install
 
 EXPOSE 80
-CMD ["httpd-foreground"]

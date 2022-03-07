@@ -45,6 +45,4 @@ jobs:
         labels: quay.expires-after=24w
         push: true
         tags: quay.io/pussthecatorg/proxitok:latest
-        build-args:
-          - release=1
-          - GH_TOKEN=${{ secrets.GH_TOKEN }}
+        build-args: release=1, GH_TOKEN=${{ secrets.GH_TOKEN }}

@@ -10,7 +10,7 @@ RUN --mount=type=secret,id=gh_token apt update -y && apt upgrade -y \
     && pecl install redis \
     && docker-php-ext-enable redis \
     && git clone --depth=1 https://github.com/pablouser1/ProxiTok.git . \
-    && composer config -g github-oauth.github.com $(cat /run/secrets/gh_token) \
+    && composer config -g github-oauth.github.com $(cat /run/secrets/github_token) \
     && composer update \
     && composer install
 

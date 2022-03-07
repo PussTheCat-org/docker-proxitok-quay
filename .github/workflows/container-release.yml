@@ -46,3 +46,4 @@ jobs:
         push: true
         tags: quay.io/pussthecatorg/proxitok:latest
         build-args: release=1
+        secrets: "github_token=${{ secrets.GH_TOKEN }}" # https://github.com/docker/build-push-action/blob/master/docs/advanced/secrets.md

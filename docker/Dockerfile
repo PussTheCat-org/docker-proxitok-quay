@@ -6,7 +6,9 @@ RUN apt update -y && apt upgrade -y \
     && apt autoclean -y \
     && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /var/www/html/*
+    && rm -rf /var/www/html/* \
+    && pecl install redis \
+    && docker-php-ext-enable redis \
     && git clone --depth=1 https://github.com/pablouser1/ProxiTok.git . \
     && composer update \
     && composer install

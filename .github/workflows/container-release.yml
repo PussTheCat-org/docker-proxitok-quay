@@ -13,6 +13,8 @@ jobs:
 
   build-push:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
 
@@ -47,4 +49,4 @@ jobs:
         tags: quay.io/pussthecatorg/proxitok:latest
         build-args: |
           release=1
-          GH_TOKEN=${{ secrets.GH_TOKEN }}
+          GH_TOKEN=${{ secrets.GITHUB_TOKEN }}

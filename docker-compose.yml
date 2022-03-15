@@ -6,14 +6,14 @@ services:
     container_name: proxytok
     image: quay.io/pussthecatorg/proxitok:latest
     ports:
-      - 8080:80
+      - 8080:8080
     environment:
-      - APP_URL="http://localhost:8080"
       - LATTE_CACHE=/cache
       - API_CACHE=redis
       - REDIS_HOST=proxytok-redis
       - REDIS_PORT=6379
       - API_CACHE_JSON=/cache
+      - API_FORCE_LEGACY=1
     volumes:
       - proxitok-cache:/cache
     depends_on:

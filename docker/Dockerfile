@@ -15,7 +15,7 @@ RUN apt update -y && apt upgrade -y \
     && apt autoclean -y \
     && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /var/www/html/*
+    && rm -rf /var/www/html/* \
     && rm -rf /usr/bin/composer
 
 EXPOSE 8080

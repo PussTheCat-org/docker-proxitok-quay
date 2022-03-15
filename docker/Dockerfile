@@ -1,4 +1,4 @@
-FROM php:apache
+FROM php:7.4-apache
 WORKDIR /var/www/html
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 ARG GH_TOKEN

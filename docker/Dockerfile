@@ -1,5 +1,5 @@
-FROM php:apache
-WORKDIR /var/www/html
+FROM php:8
+WORKDIR /proxitok
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 ARG GH_TOKEN
 RUN apt update -y && apt upgrade -y \

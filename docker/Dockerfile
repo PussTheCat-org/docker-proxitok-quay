@@ -7,8 +7,6 @@ RUN apt update -y && apt upgrade -y \
     && pecl install redis \
     && docker-php-ext-enable redis \
     && docker-php-ext-install zip \
-    && docker-php-ext-enable zip \
-    && a2enmod rewrite headers \
     && git clone --depth=1 https://github.com/pablouser1/ProxiTok.git . \
     && composer config -g github-oauth.github.com "$GH_TOKEN" \
     && composer update \

@@ -6,6 +6,7 @@ RUN apt update -y && apt upgrade -y \
     && apt install -y --no-install-recommends wget git unzip libzip-dev \
     && pecl install redis \
     && docker-php-ext-enable redis \
+    && docker-php-ext-install zip \
     && docker-php-ext-enable zip \
     && a2enmod rewrite headers \
     && git clone --depth=1 https://github.com/pablouser1/ProxiTok.git . \

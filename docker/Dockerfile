@@ -9,6 +9,7 @@ RUN apt update -y && apt upgrade -y \
     && a2enmod rewrite headers \
     && mkdir /cache \
     && chown -R www-data:www-data /cache \
+    && rm -rf /var/www/html/* \
     && git clone --depth=1 https://github.com/pablouser1/ProxiTok.git . \
     && composer config -g github-oauth.github.com "$GH_TOKEN" \
     && composer update \
@@ -16,7 +17,6 @@ RUN apt update -y && apt upgrade -y \
     && apt autoclean -y \
     && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /var/www/html/* \
     && rm -rf /usr/bin/composer
 
 EXPOSE 80

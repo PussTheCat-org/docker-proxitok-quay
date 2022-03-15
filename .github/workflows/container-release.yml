@@ -49,4 +49,3 @@ jobs:
         tags: quay.io/pussthecatorg/proxitok:latest
         build-args: |
           release=1
-          GH_TOKEN=${{ secrets.GITHUB_TOKEN }}

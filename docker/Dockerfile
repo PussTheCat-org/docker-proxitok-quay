@@ -4,7 +4,8 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 ARG GH_TOKEN
 RUN apt update -y && apt upgrade -y \
     && apt install -y --no-install-recommends git libzip-dev \
-    && docker-php-ext-install redis zip \
+    && pecl install redis zip \
+    && docker-php-ext-enable redis zip \
     && a2enmod rewrite headers \
     && mkdir /cache \
     && chown -R www-data:www-data /cache \

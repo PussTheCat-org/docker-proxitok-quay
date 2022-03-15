@@ -2,28 +2,33 @@ version: '3'
 
 services:
 
-  proxytok:
-    container_name: proxytok
+  proxitok:
+    container_name: proxitok
     image: quay.io/pussthecatorg/proxitok:latest
     ports:
-      - 8080:8080
+      - 8080:80
     environment:
       - LATTE_CACHE=/cache
       - API_CACHE=redis
-      - REDIS_HOST=proxytok-redis
+      - REDIS_HOST=proxitok-redis
       - REDIS_PORT=6379
-      - API_CACHE_JSON=/cache
-      - API_FORCE_LEGACY=1
+      - API_BROWSER_URL=http://proxitok-chrome:9515
     volumes:
       - proxitok-cache:/cache
     depends_on:
-      - proxytok-redis
+      - proxitok-redis
+      - proxitok-chrome
 
-  proxytok-redis:
+  proxitok-redis:
     image: redis:6-alpine
-    container_name: proxytok-redis
+    container_name: proxitok-redis
     command: redis-server --save 60 1 --loglevel warning
     restart: unless-stopped
+
+  proxitok-chrome:
+    container_name: proxitok-chrome
+    image: zenika/alpine-chrome:with-chromedriver
+    shm_size: 1g
 
 volumes:
   proxitok-cache:

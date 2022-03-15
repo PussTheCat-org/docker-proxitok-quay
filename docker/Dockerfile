@@ -17,4 +17,5 @@ RUN apt update -y && apt upgrade -y \
     && rm -rf /var/www/html/* \
     && rm -rf /usr/bin/composer
 
-EXPOSE 80
+EXPOSE 8080
+CMD php -S 0.0.0.0:8080

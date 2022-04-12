@@ -27,6 +27,7 @@ services:
 
   proxitok-chrome:
     container_name: proxitok-chrome
+    hostname: proxitok-chrome
     image: zenika/alpine-chrome:with-chromedriver
     shm_size: 1g
 
